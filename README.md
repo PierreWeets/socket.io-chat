@@ -4,21 +4,32 @@ This application uses the sources of the [tutorial] (http://blog.bini.io/develop
 ## Installation
 
 If you do not have bower installed on your machine, install it first as follows:  
-````
+```
 npm install -g bower
-````
+```
 
 To install the application, download the sources (git clone) and run the following command from the root of the project.  
-````
+```
 npm install
 bower install
-````
+```
+Create a .env file containing informations about the connection string & the Port used by the client browser:
+
+Ex: file '.env' :
+```
+DB_CONNECTION_STRING = "mongodb+srv://kay:myRealPassword@cluster0.qmkvi.mongodb.net/realtimeChat?retryWrites=true&w=majority"
+PORT=4000
+```
+where
+* 'kay' = user id
+* 'myRealPasswor' = password
+* 'realtimeChat?retryWrites=true' = directive for real-time chat
 
 ## Start the application
 To start the application, run the following command from the root of the project.  
-````
+```
 node server
-````
+```
 
 The application is now accessible at the url ** http: // localhost: 4000 / **.  
 ****************************
