@@ -24,7 +24,7 @@ The application is now accessible at the url ** http: // localhost: 4000 / **.
 ****************************
 INFORMATION :  
 
-In Server.js :  
+In file ./Server.js :  
 
 - each time a user connects on the page (http://localhost:4000/).  
 "io.on('connection', function (socket) "  // 'connection' = reserved word
@@ -41,7 +41,8 @@ ex: (server side) io.emit -> socket.on  (client side)
 ex: (server side) socket.broadcast.emit -> socket.on (client side EXCEPT the current user)  
 "socket.broadcast.emit('service-message', broadcastedServiceMessage)" --TRIGGERS--> socket.on('service-message', function (message) 
 ---------------------
-In Client.js :
+In file ./public/Client.js :
+
 - Correspondance between the methods 'socket.emit' AND 'socket.on' inside Client.js.  
 ex: (client side) socket.emit -> socket.on (client side)  
 "socket.emit('chat-message', message)" --TRIGGERS--> "socket.on('chat-message', function (messageObj)" 
