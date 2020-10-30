@@ -13,7 +13,7 @@ To install the application, download the sources (git clone) and run the followi
 npm install
 bower install
 ```
-Create a .env file containing informations about the connection string & the Port used by the client browser:
+In the root of the project, create a '.env' file containing informations about the connection string & the Port used by the client browser:
 
 Ex: file '.env' :
 ```
