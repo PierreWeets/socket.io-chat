@@ -1,10 +1,10 @@
 var userObj;//global for the whole file client.js
 
 /*global io*/
-var socket = io();
+var socket = io();//
 
 /**
- * Scroll vers le bas de page si l'utilisateur n'est pas remonté pour lire d'anciens messages
+ * Scroll down the page if the user has not moved up to read old messages
  */
 function scrollToBottom() {
   if ($(window).scrollTop() + $(window).height() + 2 * $('#messages li').last().outerHeight() >= $(document).height()) {
@@ -13,10 +13,10 @@ function scrollToBottom() {
 }
 
 /**
- * Connexion d'un utilisateur
+ * User login
  */
 $('#login form').submit(function (e) { // event : submit of the form, inside the element with id="login"
-  e.preventDefault();// On évite le recharchement de la page lors de la validation du formulaire
+  e.preventDefault();// We avoid reloading the page when validating the form
   // create the object 'user'
    userObj = {
     //in the active window, inside the element with id="login",
@@ -28,16 +28,16 @@ $('#login form').submit(function (e) { // event : submit of the form, inside the
     console.log('LOGIN : userObj.username = ' + userObj.username);
     
 
-  // Si le champ de connexion n'est pas vide
+  // If the login field is not empty
   if (userObj.username.length > 0) { //in the object 'user', the length of the value of the key 'username' > 0
     // send the object 'user' to the server, with event named 'user-login' 
     socket.emit('user-login', userObj, function (success) {
       if (success) {
-       // Cache formulaire de connexion
+       // Login form cache
         $('body').removeAttr('id'); //in the active window, remove the attribute of the body element
           // => in CSS file, the lines with "body#logged-out" are deactivated
         
-        // Focus sur le champ du message
+        // Focus on the message field
         $('#chat input').focus(); // in the active window, inside the element with id="chat", 
                                   //set focus on the input element 
       }
@@ -55,9 +55,9 @@ $('#login form').submit(function (e) { // event : submit of the form, inside the
   // => triggers the code
 $('#chat form').submit(function (e) { 
   
-  // On évite le recharchement de la page lors de la validation du formulaire
+  // avoid reloading the page when validating the form
   e.preventDefault();
-  // On crée notre objet JSON correspondant à notre message
+  // create our JSON object corresponding to our message
   console.log("userObj.username: "  + userObj.username);
   var message = {
     username : userObj.username,
@@ -73,7 +73,7 @@ $('#chat form').submit(function (e) {
 });
 
 /**
- * Réception d'un message
+ * Receiving a message
  */
 socket.on('chat-message', function (messageObj) {
   //in the active window, in the <ul> element with id="messages", 
@@ -84,7 +84,7 @@ socket.on('chat-message', function (messageObj) {
 });
 
 /**
- * Réception d'un message de service
+ * Receiving a service message
  */
 socket.on('service-message', function (message) {
   $('#messages').append($('<li class="' + message.type + '">').html('<span class="info">information</span> ' + message.text));
@@ -92,8 +92,9 @@ socket.on('service-message', function (message) {
 });
 
 /**
- * Connexion d'un nouvel utilisateur
+ * New user login
  */
+//EVENT 'user-login'
 socket.on('user-login', function (user) {
   //$('#users').append($('<li class="' + user.username + ' new">').html(user.username) + '<span class="typing">typing</span>');
   $('#users').append($('<li class="' + user.username + ' new">').html(user.username + '<span class="typing">typing</span>'));
@@ -105,8 +106,9 @@ socket.on('user-login', function (user) {
 });
 
 /**
- * Déconnexion d'un utilisateur
+ * Logging out of a user
  */
+//EVENT 'user-logout' : remove the disconnected user from the UI 
 socket.on('user-logout', function (user) {
   let selector = '#users li.' + user.username;
   //in HTML, remove the <li> element |-> unlogged user
@@ -114,11 +116,12 @@ socket.on('user-logout', function (user) {
 });
 
 /**
- * Détection saisie utilisateur
+ * User input detection
  */
 var typingTimer;
 var isTyping = false;
 
+//EVENT keypress
 $('#m').keypress(function () { //$('#m') = Html element with id="m"
   clearTimeout(typingTimer);
   if (!isTyping) {//if isTyping => emit the event 'start-typing'
@@ -126,7 +129,7 @@ $('#m').keypress(function () { //$('#m') = Html element with id="m"
     isTyping = true;//flag 'isTyping' activated
   }
 });
-
+//EVENT keyup
 $('#m').keyup(function () {
   clearTimeout(typingTimer);
   typingTimer = setTimeout(function () {
@@ -134,12 +137,13 @@ $('#m').keyup(function () {
       socket.emit('stop-typing');
       isTyping = false;//flag 'isTyping' deactivated
     }
-  }, 500);
+  }, 500);// after 500ms , trigger the function content
 });
 
 /**
- * Gestion saisie des autres utilisateurs
+ * Input management of other users
  */
+//EVENT 'update-typing'
 socket.on('update-typing', function (typingUsers) {
   $('#users li span.typing').hide();
   for (i = 0; i < typingUsers.length; i++) {

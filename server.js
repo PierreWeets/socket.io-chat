@@ -1,10 +1,9 @@
-const express = require('express');
-const app = express();
-const http = require('http').Server(app);
+const express = require('express'); // class for REST : use of URL & body of request , from browser.
+const app = express();// create a instance of the class 'express'
+const http = require('http').Server(app);//
 const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 
-//require("dotenv/config"); //get content of the .env file
 require('dotenv').config(); //get content of the .env file
 
 mongoose.connect(
@@ -15,18 +14,9 @@ mongoose.connect(
 });
 
 const Message = require("./models/message");
-// const Message = new mongoose.Schema({
-// 	username: { type: String,
-// 			required : true},
-// 	text: { type : String
-// 		  }
-//   }) ;
 
 // parse body of incoming requests, from 'req' parameter in app.post('/create_user'
 app.use(express.json());
-
-//const User = require("./model.user");
-//require("doteven/config");
 
 var maxNumbersOfMessage = 20;
 // List of connected users
@@ -47,7 +37,7 @@ function printObject(o) {
   console.log(out);
 }
 
-// send the reference to the public directory, containing the file 'index.html', TO the client sessions
+// send the reference of the public directory, containing the file 'index.html', TO the client sessions
 app.use("/", express.static(__dirname + "/public"));
 
 // Event 'connection' : each time a user connects on the page (http://localhost:3000/),
@@ -130,8 +120,7 @@ io.on('connection', function (socket) {
     }
   });
 
-  // EVENT 'disconnect' : each time a user disconnects from URL: http://localhost:3000/
-
+  // EVENT 'disconnect' : each time a user disconnects from URL: http://localhost:4000/
   socket.on('disconnect', function (){ // 'disconnect' = reserved flag  
     if (loggedUserObj !== undefined) {
       console.log(`user ${userID} disconnected`);
@@ -149,7 +138,7 @@ io.on('connection', function (socket) {
         users.splice(userIndex, 1);//remove at userIndex from the array 'users'
       }
 
-      // send EVENT 'user-logout' contenant le user
+      // trigger EVENT 'user-logout' on client side
       io.emit('user-logout', loggedUserObj);
       // add message to the history
       messages.push(serviceMessage);
@@ -228,11 +217,10 @@ io.on('connection', function (socket) {
 
 });
 
-
 /**
  * Lancement du serveur en écoutant les connexions arrivant sur le port 3000
  */
-const PORT = process.env.PORT;
+const PORT = process.env.PORT;// retrieve in the .env file the value |-> key "PORT" 
 http.listen(PORT, function () {
   console.log(`Server is listening on port:${PORT}`);
 });
