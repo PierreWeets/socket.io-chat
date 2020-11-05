@@ -17,13 +17,13 @@ In the root of the project, create a '.env' file containing informations about t
 
 Ex: file '.env' :
 ```
-DB_CONNECTION_STRING = "mongodb+srv://kay:myRealPassword@cluster0.qmkvi.mongodb.net/realtimeChat?retryWrites=true&w=majority"
+DB_CONNECTION_STRING = "mongodb+srv://[myUser]:[myPassword]@cluster0.qmkvi.mongodb.net/[myMongoDB]?retryWrites=true&w=majority"
 PORT=4000
 ```
 where
-* 'kay' = user id
-* 'myRealPasswor' = password
-* 'realtimeChat?retryWrites=true' = directive for real-time chat
+* 'myUser' = your user-id on MondoDB Atlas
+* 'myPassword' = your password on MondoDB Atlas
+* 'myMongoDB' = name of the your DB on MondoDB Atlas
 
 ## Start the application
 To start the application, run the following command from the root of the project.  
