@@ -21,9 +21,11 @@ DB_CONNECTION_STRING = "mongodb+srv://[myUser]:[myPassword]@cluster0.qmkvi.mongo
 PORT=4000
 ```
 where
-* [myUser] = your user-id on MondoDB Atlas
-* [myPassword] = your password on MondoDB Atlas
-* [myMongoDB] = name of the your DB on MondoDB Atlas
+* [myUser] = your user-id on MongoDB Atlas
+* [myPassword] = your password on MongoDB Atlas
+* [myMongoDB] = name of your DB on MongoDB Atlas
+
+To [create a DB on MongoDB Atlas](https://www.mongodb.com/cloud/atlas/signup).
 
 ## Start the application
 To start the application, run the following command from the root of the project.  
