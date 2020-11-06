@@ -40,12 +40,13 @@ where
 * [myMongoDB] = name of your DB on MongoDB Atlas
 
 ## Start the application
-run the following command from the root of the project.  
+run the following command from the root of the project, to lauch the server-side application.  
 ```
 node server
 ```
-The application is now accessible at the url ** http: // localhost: 4000 / **.  
+The client-side application is now accessible in a browser at the url [http://localhost:4000/](http://localhost:4000/).  
 
+You can start several client-side applications with several browser with the url [http://localhost:4000/](http://localhost:4000/). 
 
 ## INFORMATION :  
 
