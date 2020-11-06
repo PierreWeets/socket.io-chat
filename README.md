@@ -3,17 +3,31 @@ This application uses the sources of the [tutorial] (http://blog.bini.io/develop
 
 ## Installation
 
-If you do not have bower installed on your machine, install it first as follows:  
+In a command line window :  
+
+* install bower on your machine
 ```
 npm install -g bower
 ```
 
-To install the application, download the sources (git clone) and run the following command from the root of the project.  
+* install the application, download the sources (git clone) 
+```
+git clone https://github.com/PierreWeets/socket.io-chat.git
+```
+and go into the root of the project.
+```
+cd socket.io-chat
+```
+
+* run the following commands, from the root of the project.  
 ```
 npm install
 bower install
 ```
-In the root of the project, create a '.env' file containing informations about the connection string & the Port used by the client browser:
+
+* [create a DB on MongoDB Atlas](https://www.mongodb.com/cloud/atlas/signup).
+
+* in the root of the project, create a '.env' file containing informations about the connection string & the Port used by the client browser, to connect to the MongoDB.
 
 Ex: file '.env' :
 ```
@@ -25,17 +39,15 @@ where
 * [myPassword] = your password on MongoDB Atlas
 * [myMongoDB] = name of your DB on MongoDB Atlas
 
-To [create a DB on MongoDB Atlas](https://www.mongodb.com/cloud/atlas/signup).
-
 ## Start the application
-To start the application, run the following command from the root of the project.  
+run the following command from the root of the project.  
 ```
 node server
 ```
-
 The application is now accessible at the url ** http: // localhost: 4000 / **.  
-****************************
-INFORMATION :  
+
+
+## INFORMATION :  
 
 In file ./Server.js :  
 
@@ -53,7 +65,8 @@ ex: (server side) io.emit -> socket.on  (client side)
 - Correspondance between the methods 'socket.broadcast.emit' from Server.js AND method 'socket.on' in each Client.js EXCEPT the current user.  
 ex: (server side) socket.broadcast.emit -> socket.on (client side EXCEPT the current user)  
 "socket.broadcast.emit('service-message', broadcastedServiceMessage)" --TRIGGERS--> socket.on('service-message', function (message) 
----------------------
+
+---------------------  
 In file ./public/Client.js :
 
 - Correspondance between the methods 'socket.emit' AND 'socket.on' inside Client.js.  
