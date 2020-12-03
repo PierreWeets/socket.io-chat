@@ -25,9 +25,17 @@ npm install
 bower install
 ```
 
-* [create a DB on MongoDB Atlas](https://www.mongodb.com/cloud/atlas/signup).
+* in the root of the project, create a '.env' file containing references to an existing MongoDB :   
+```
+DB_CONNECTION_STRING = "mongodb+srv://becodeUser:becodeUser2020@cluster0.qmkvi.mongodb.net/realtimeChat?retryWrites=true&w=majority"
+PORT=4000
+```  
 
-* in the root of the project, create a '.env' file containing informations about the connection string & the Port used by the client browser, to connect to the MongoDB.
+# OR
+
+* [create a DB on MongoDB Atlas](https://www.mongodb.com/cloud/atlas/signup).   
+
+And in the root of the project, create a '.env' file containing informations about the connection string & the Port used by the client browser, to connect to the MongoDB.
 
 Ex: file '.env' :
 ```
@@ -35,9 +43,13 @@ DB_CONNECTION_STRING = "mongodb+srv://[myUser]:[myPassword]@cluster0.qmkvi.mongo
 PORT=4000
 ```
 where
-* [myUser] = your user-id on MongoDB Atlas
-* [myPassword] = your password on MongoDB Atlas
-* [myMongoDB] = name of your DB on MongoDB Atlas
+	* [myUser] = your user-id on MongoDB Atlas
+	* [myPassword] = your password on MongoDB Atlas
+	* [myMongoDB] = name of your DB on MongoDB Atlas  
+ 
+
+
+
 
 ## Start the application
 run the following command from the root of the project, to lauch the server-side application.  
