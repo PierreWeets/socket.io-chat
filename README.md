@@ -43,12 +43,10 @@ DB_CONNECTION_STRING = "mongodb+srv://[myUser]:[myPassword]@cluster0.qmkvi.mongo
 PORT=4000
 ```
 where
-	* [myUser] = your user-id on MongoDB Atlas
-	* [myPassword] = your password on MongoDB Atlas
-	* [myMongoDB] = name of your DB on MongoDB Atlas  
+* [myUser] = your user-id on MongoDB Atlas
+* [myPassword] = your password on MongoDB Atlas
+* [myMongoDB] = name of your DB on MongoDB Atlas  
  
-
-
 
 
 ## Start the application
